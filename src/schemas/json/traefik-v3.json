@@ -1057,6 +1057,9 @@
         },
         "tls": {
           "$ref": "#/$defs/staticTLSConfig"
+        },
+        "underscoreHeadersStrategy": {
+          "type": "string"
         }
       },
       "type": "object"
