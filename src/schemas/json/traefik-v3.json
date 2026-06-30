@@ -1,6 +1,4 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://json.schemastore.org/traefik-v3.json",
   "$defs": {
     "CertificateResolverTailscaleStruct": {
       "additionalProperties": false,
@@ -13,7 +11,10 @@
           "items": {
             "type": "string"
           },
-          "type": ["array", "null"]
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "caServer": {
           "type": "string"
@@ -27,6 +28,15 @@
         "certificatesDuration": {
           "type": "integer"
         },
+        "clientResponseHeaderTimeout": {
+          "type": "string"
+        },
+        "clientTimeout": {
+          "type": "string"
+        },
+        "disableCommonName": {
+          "type": "boolean"
+        },
         "dnsChallenge": {
           "$ref": "#/$defs/acmeDNSChallenge"
         },
@@ -34,7 +44,18 @@
           "$ref": "#/$defs/acmeEAB"
         },
         "email": {
+          "description": "Email address used for ACME account registration. This is the contact email for the certificate authority.",
           "type": "string"
+        },
+        "emailAddresses": {
+          "description": "Email addresses to include in the Certificate Signing Request (CSR). These are different from the ACME registration email and are embedded in the certificate itself.",
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "httpChallenge": {
           "$ref": "#/$defs/acmeHTTPChallenge"
@@ -43,6 +64,9 @@
           "type": "string"
         },
         "preferredChain": {
+          "type": "string"
+        },
+        "profile": {
           "type": "string"
         },
         "storage": {
@@ -58,9 +82,11 @@
       "additionalProperties": false,
       "properties": {
         "delayBeforeCheck": {
+          "description": "DEPRECATED. Delay before checking propagation. Use acme.dnsChallenge.propagation.delayBeforeChecks instead.",
           "type": "string"
         },
         "disablePropagationCheck": {
+          "description": "DEPRECATED. Disable propagation check. Use acme.dnsChallenge.propagation.disableChecks instead.",
           "type": "boolean"
         },
         "propagation": {
@@ -73,7 +99,10 @@
           "items": {
             "type": "string"
           },
-          "type": ["array", "null"]
+          "type": [
+            "array",
+            "null"
+          ]
         }
       },
       "type": "object"
@@ -93,6 +122,10 @@
     "acmeHTTPChallenge": {
       "additionalProperties": false,
       "properties": {
+        "delay": {
+          "description": "Delay between the creation of the challenge and the validation (duration format, e.g., 30s, 1m).",
+          "type": "string"
+        },
         "entryPoint": {
           "type": "string"
         }
@@ -119,6 +152,12 @@
     },
     "acmeTLSChallenge": {
       "additionalProperties": false,
+      "properties": {
+        "delay": {
+          "description": "Delay between the creation of the challenge and the validation (duration format, e.g., 30s, 1m).",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "consulProviderBuilder": {
@@ -128,13 +167,19 @@
           "items": {
             "type": "string"
           },
-          "type": ["array", "null"]
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "namespaces": {
           "items": {
             "type": "string"
           },
-          "type": ["array", "null"]
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "rootKey": {
           "type": "string"
@@ -215,7 +260,10 @@
           "items": {
             "type": "string"
           },
-          "type": ["array", "null"]
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "prefix": {
           "type": "string"
@@ -236,7 +284,10 @@
           "items": {
             "type": "string"
           },
-          "type": ["array", "null"]
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "watch": {
           "type": "boolean"
@@ -275,7 +326,10 @@
           "items": {
             "type": "string"
           },
-          "type": ["array", "null"]
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "nativeLBByDefault": {
           "type": "boolean"
@@ -389,7 +443,10 @@
           "items": {
             "type": "string"
           },
-          "type": ["array", "null"]
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "constraints": {
           "type": "string"
@@ -425,7 +482,10 @@
           "items": {
             "type": "string"
           },
-          "type": ["array", "null"]
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "password": {
           "type": "string"
@@ -479,7 +539,10 @@
           "items": {
             "type": "string"
           },
-          "type": ["array", "null"]
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "nativeLBByDefault": {
           "type": "boolean"
@@ -545,7 +608,9 @@
           "$ref": "#/$defs/typesClientTLS"
         }
       },
-      "required": ["endpoint"],
+      "required": [
+        "endpoint"
+      ],
       "type": "object"
     },
     "ingressEndpointIngress": {
@@ -597,7 +662,10 @@
           "items": {
             "type": "string"
           },
-          "type": ["array", "null"]
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "nativeLBByDefault": {
           "type": "boolean"
@@ -654,7 +722,10 @@
           "items": {
             "type": "string"
           },
-          "type": ["array", "null"]
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "prefix": {
           "type": "string"
@@ -723,13 +794,19 @@
           "items": {
             "type": "string"
           },
-          "type": ["array", "null"]
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "mounts": {
           "items": {
             "type": "string"
           },
-          "type": ["array", "null"]
+          "type": [
+            "array",
+            "null"
+          ]
         }
       },
       "type": "object"
@@ -744,7 +821,10 @@
           "items": {
             "type": "string"
           },
-          "type": ["array", "null"]
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "password": {
           "type": "string"
@@ -845,16 +925,13 @@
     "staticEncodedCharacters": {
       "additionalProperties": false,
       "properties": {
-        "allowEncodedSlash": {
-          "type": "boolean"
-        },
         "allowEncodedBackSlash": {
           "type": "boolean"
         },
-        "allowEncodedNullCharacter": {
+        "allowEncodedHash": {
           "type": "boolean"
         },
-        "allowEncodedSemicolon": {
+        "allowEncodedNullCharacter": {
           "type": "boolean"
         },
         "allowEncodedPercent": {
@@ -863,7 +940,10 @@
         "allowEncodedQuestionMark": {
           "type": "boolean"
         },
-        "allowEncodedHash": {
+        "allowEncodedSemicolon": {
+          "type": "boolean"
+        },
+        "allowEncodedSlash": {
           "type": "boolean"
         }
       },
@@ -975,16 +1055,25 @@
           "items": {
             "type": "string"
           },
-          "type": ["array", "null"]
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "insecure": {
+          "type": "boolean"
+        },
+        "notAppendXForwardedFor": {
           "type": "boolean"
         },
         "trustedIPs": {
           "items": {
             "type": "string"
           },
-          "type": ["array", "null"]
+          "type": [
+            "array",
+            "null"
+          ]
         }
       },
       "type": "object"
@@ -1037,11 +1126,11 @@
     "staticHTTPConfig": {
       "additionalProperties": false,
       "properties": {
-        "encodedCharacters": {
-          "$ref": "#/$defs/staticEncodedCharacters"
-        },
         "encodeQuerySemicolons": {
           "type": "boolean"
+        },
+        "encodedCharacters": {
+          "$ref": "#/$defs/staticEncodedCharacters"
         },
         "maxHeaderBytes": {
           "type": "integer"
@@ -1050,7 +1139,10 @@
           "items": {
             "type": "string"
           },
-          "type": ["array", "null"]
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "redirections": {
           "$ref": "#/$defs/staticRedirections"
@@ -1162,7 +1254,10 @@
           "items": {
             "type": "string"
           },
-          "type": ["array", "null"]
+          "type": [
+            "array",
+            "null"
+          ]
         }
       },
       "type": "object"
@@ -1225,7 +1320,10 @@
           "items": {
             "type": "string"
           },
-          "type": ["array", "null"]
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "spiffe": {
           "$ref": "#/$defs/staticSpiffe"
@@ -1240,7 +1338,10 @@
           "items": {
             "type": "string"
           },
-          "type": ["array", "null"]
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "trustDomain": {
           "type": "string"
@@ -1285,7 +1386,10 @@
           "items": {
             "type": "string"
           },
-          "type": ["array", "null"]
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "spiffe": {
           "$ref": "#/$defs/staticSpiffe"
@@ -1303,7 +1407,10 @@
           "items": {
             "$ref": "#/$defs/typesDomain"
           },
-          "type": ["array", "null"]
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "options": {
           "type": "string"
@@ -1321,13 +1428,19 @@
           "items": {
             "type": "string"
           },
-          "type": ["array", "null"]
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "capturedResponseHeaders": {
           "items": {
             "type": "string"
           },
-          "type": ["array", "null"]
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "globalAttributes": {
           "additionalProperties": {
@@ -1348,7 +1461,10 @@
           "items": {
             "type": "string"
           },
-          "type": ["array", "null"]
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "sampleRate": {
           "type": "number"
@@ -1376,6 +1492,9 @@
         },
         "bufferingSize": {
           "type": "integer"
+        },
+        "dualOutput": {
+          "type": "boolean"
         },
         "fields": {
           "$ref": "#/$defs/typesAccessLogFields"
@@ -1426,7 +1545,10 @@
           "items": {
             "type": "string"
           },
-          "type": ["array", "null"]
+          "type": [
+            "array",
+            "null"
+          ]
         }
       },
       "type": "object"
@@ -1483,7 +1605,10 @@
           "items": {
             "type": "string"
           },
-          "type": ["array", "null"]
+          "type": [
+            "array",
+            "null"
+          ]
         }
       },
       "type": "object"
@@ -1594,7 +1719,10 @@
           "items": {
             "type": "number"
           },
-          "type": ["array", "null"]
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "grpc": {
           "$ref": "#/$defs/typesOTelGRPC"
@@ -1699,7 +1827,10 @@
           "items": {
             "type": "number"
           },
-          "type": ["array", "null"]
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "entryPoint": {
           "type": "string"
@@ -1780,7 +1911,10 @@
           "items": {
             "type": "string"
           },
-          "type": ["array", "null"]
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "password": {
           "type": "string"
@@ -1795,7 +1929,8 @@
       "type": "object"
     }
   },
-  "title": "Traefik v3 Static Configuration",
+  "$id": "https://json.schemastore.org/traefik-v3.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "properties": {
     "accessLog": {
       "$ref": "#/$defs/typesAccessLog"
@@ -1852,5 +1987,6 @@
       "$ref": "#/$defs/staticTracing"
     }
   },
+  "title": "Traefik v3 Static Configuration",
   "type": "object"
 }
